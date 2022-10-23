@@ -1,0 +1,10 @@
+<h2>Choose a car part</h2>
+<div>
+    <button *ngFor="let part of configurableParts; let partIndex = index">
+        <span (click)="selectCarPart(partIndex)">
+            {{part}}
+        </span>
+    </button>
+</div>
+
+<app-car-part [carPart]="givenPart" (amountForCarConfigurator)="getAmountFromSelectedPart($event)"></app-car-part>

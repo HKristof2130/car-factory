@@ -1,0 +1,15 @@
+<div>
+    <h2>Choose a brand</h2>
+    <ul *ngFor="let brand of carBrands">
+        <li>
+            {{brand}}&nbsp;
+            <button (click)="addCarBrandToSearchSet(brand)">Add</button>&nbsp;
+            <button (click)="removeCarBrandFromSearchSet(brand)">Remove</button>
+        </li>
+    </ul>
+    <br>
+    <h3>Selected brands:</h3>
+    <ul *ngFor="let brand of carsOnSearch">
+        <li>{{brand}}</li>
+    </ul>
+</div>

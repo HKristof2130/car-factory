@@ -1,0 +1,6 @@
+<div *ngIf="carPart != '' ">
+    <h3 >Select the amount of {{carPart}}</h3>
+    <input type="number" #amountInput>
+    <button (click)="addSelectedAmount(amountInput.value)">Add</button>
+</div>
+

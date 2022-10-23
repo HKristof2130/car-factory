@@ -1,0 +1,15 @@
+li{
+    display: inline;
+    float: left;
+    margin-left: 20px;
+}
+
+button{
+    display: block;
+    padding: 5px;
+}
+
+.active{
+    color: red;
+    background-color: black;
+}

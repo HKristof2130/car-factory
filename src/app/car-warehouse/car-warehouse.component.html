@@ -1,0 +1,7 @@
+<app-brand-list 
+    [carBrands]="carTypes" 
+    (addCarBrandToSearch)="addCarToSearch($event)"
+    (removeCarBrandFromSearch)="removeCarFromSearch($event)">
+
+</app-brand-list>
+<app-car-configurator></app-car-configurator>
