@@ -22,6 +22,9 @@ export class CarWarehouseComponent implements OnInit {
       this.carsOnStock.push(Car.buildCar(CarType.BMW));
       this.carsOnStock.push(Car.buildCar(CarType.TRABANT));
     }
+
+    console.log(this.carsOnStock);
+    
   }
 
   addCarToSearch($event : CarType){
