@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-car-configurator',
@@ -9,6 +9,8 @@ export class CarConfiguratorComponent implements OnInit {
 
   configurableParts : CarPart[] = [CarPart.DOORS,CarPart.WINDOWS,CarPart.ENGINE,CarPart.TIRE];
   givenPart : string = "";
+  selectedCarPartsAndAmounts : CarPartsAndAmountsDictionary = {};
+  @Output() giveSelectedPartsAndAmounts : EventEmitter<CarPartsAndAmountsDictionary> = new EventEmitter<CarPartsAndAmountsDictionary>();
   
   constructor() { }
 
@@ -22,13 +24,19 @@ export class CarConfiguratorComponent implements OnInit {
   }
 
   getAmountFromSelectedPart($event : number){
-    // index signature for carpart and amount
+    this.selectedCarPartsAndAmounts[this.givenPart] = { carPart : this.givenPart , amount : $event};
+
+    this.giveSelectedPartsAndAmounts.emit(this.selectedCarPartsAndAmounts);
   }
 
 }
 
+export type CarPartsAndAmountsDictionary = {
+  [key:string] : CarPartAmount;
+}
+
 export type CarPartAmount = {
-  carPart: CarPart,
+  carPart: string,
   amount : number,
 }
 

@@ -1,44 +1,27 @@
 import { createInjectableType } from "@angular/compiler";
 import { Injectable } from "@angular/core";
 import { CarType } from "../car-type.enum";
+import { Car } from "./car.type";
 
-export class Car{
+@Injectable({
+    providedIn : "root",
+})
+export class CarGeneratorService{
 
-    private static readonly MIN_CAR_DOORS = 2;
-    private static readonly MAX_CAR_DOORS = 5;
-    private static readonly MIN_CAR_WINDOWS = 4;
-    private static readonly MAX_CAR_WINDOWS = 6;
-    private static readonly MIN_CAR_ENGINE = 1;
-    private static readonly MAX_CAR_ENGINE = 3;
-    private static readonly MIN_CAR_TIRES = 4;
-    private static readonly MAX_CAR_TIRES = 8;
+    private static readonly AMOUNT_FROM_EACH_CARTYPE = 30;
+    cars : Car[] = [];
 
-
-    carType : CarType;
-    doors : number ;
-    windows : number ;
-    engine : number ;
-    tire : number ;
-
-    private constructor(type : CarType , doorNumber : number, windowNumber : number, engineNumber : number, tireNumber : number){
-        this.carType = type;
-        this.doors = doorNumber;
-        this.windows = windowNumber;
-        this.engine = engineNumber;
-        this.tire = tireNumber;
+    constructor(){
+        
+        for(let i = 0; i < CarGeneratorService.AMOUNT_FROM_EACH_CARTYPE; i++){
+            this.cars.push(Car.buildCar(CarType.AUDI));
+            this.cars.push(Car.buildCar(CarType.TRABANT));
+            this.cars.push(Car.buildCar(CarType.BMW));
+        }
     }
 
-    static buildCar(type: CarType) : Car{
-        
-        const doors = Math.floor( Math.random() * (Car.MAX_CAR_DOORS - Car.MIN_CAR_DOORS +1)) + Car.MIN_CAR_DOORS;
-        
-        const windows = Math.floor(Math.random() * (Car.MAX_CAR_WINDOWS - Car.MIN_CAR_WINDOWS +1)) + Car.MIN_CAR_WINDOWS;
-
-        const engine = Math.random() * (Car.MAX_CAR_ENGINE - Car.MIN_CAR_ENGINE +1) + Car.MIN_CAR_ENGINE;
-
-        const tires = Math.floor(Math.random() * (Car.MAX_CAR_TIRES - Car.MIN_CAR_TIRES +1)) + Car.MIN_CAR_TIRES;
-        
-        return new Car(type, doors, windows, engine, tires);
+    getCarsArray() :  Car[]{
+        return this.cars;
     }
 
     

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Car } from '../car-generator/car-generatoor';
+import { CarGeneratorService } from '../car-generator/car-generatoor';
 import { CarType } from '../car-type.enum';
 
 @Component({

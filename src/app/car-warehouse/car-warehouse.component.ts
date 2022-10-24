@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Car } from '../car-generator/car-generatoor';
+import { CarPartsAndAmountsDictionary } from '../car-configurator/car-configurator.component';
+import { CarGeneratorService } from '../car-generator/car-generatoor';
+import { Car } from '../car-generator/car.type';
 import { CarType } from '../car-type.enum';
 
 @Component({
@@ -13,16 +15,11 @@ export class CarWarehouseComponent implements OnInit {
   carsOnStock : Car[] = [];
   carTypes : CarType[] = [CarType.AUDI,CarType.BMW,CarType.TRABANT];
   carBrandsOnSearch : Set<CarType> = new Set<CarType>();
-  constructor() { }
+  constructor(private carGeneratorService : CarGeneratorService) { }
 
   ngOnInit(): void {
 
-    for(let i = 0 ; i < CarWarehouseComponent.GENERATE_CARS_FROM_EACH_TYPE; i++ ){
-      this.carsOnStock.push(Car.buildCar(CarType.AUDI));
-      this.carsOnStock.push(Car.buildCar(CarType.BMW));
-      this.carsOnStock.push(Car.buildCar(CarType.TRABANT));
-    }
-
+    this.carsOnStock = this.carGeneratorService.getCarsArray();
     console.log(this.carsOnStock);
     
   }
@@ -34,5 +31,11 @@ export class CarWarehouseComponent implements OnInit {
   removeCarFromSearch($event : CarType){
     this.carBrandsOnSearch.delete($event);
   }
+
+  getPartsAndAmountsFromCarConfigurator($event : CarPartsAndAmountsDictionary){
+    console.log($event);
+    
+  }
+
 
 }

@@ -4,4 +4,4 @@
     (removeCarBrandFromSearch)="removeCarFromSearch($event)">
 
 </app-brand-list>
-<app-car-configurator></app-car-configurator>
+<app-car-configurator (giveSelectedPartsAndAmounts)="getPartsAndAmountsFromCarConfigurator($event)"></app-car-configurator>
